@@ -1,0 +1,20 @@
+{
+  "name": "whiteboard-2",
+  "version": "1.0.0",
+  "description": "we need to write a function that takes in a numeric array and returns an object literal with two properties: - The highest and second highest value in the array",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "env": {
+    "jest": true
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^22.1.1"
+  }
+}
