@@ -1,0 +1,17 @@
+{
+  "name": "whiteboard-3",
+  "version": "1.0.0",
+  "description": "You're the junior conductor on a commuter train, and have been asked by the senior conductor to do a head count of passengers on the train.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^22.1.2"
+  }
+}
