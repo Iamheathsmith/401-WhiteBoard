@@ -1,19 +1,19 @@
 {
-  "name": "whiteboard-4",
+  "name": "whiteboard-four",
   "version": "1.0.0",
-  "description": "You're the junior conductor on a commuter train, and have been asked by the senior conductor to do a head count of passengers on the train.",
+  "description": "we need a function that will look at 2 arrays and find the items that match and push that to a new array that we can then return.",
   "main": "index.js",
   "directories": {
     "lib": "lib"
-  },
-  "devDependencies": {
-    "jest": "^22.1.3",
-    "eslint": "^4.15.0"
   },
   "scripts": {
     "test": "jest",
     "lint": "eslint"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.15.0",
+    "jest": "^22.1.3"
+  }
 }
