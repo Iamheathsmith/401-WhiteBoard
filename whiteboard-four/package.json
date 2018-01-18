@@ -1,0 +1,19 @@
+{
+  "name": "whiteboard-four",
+  "version": "1.0.0",
+  "description": "we need a function that will look at 2 arrays and find the items that match and push that to a new array that we can then return.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^4.15.0",
+    "jest": "^22.1.3"
+  }
+}
