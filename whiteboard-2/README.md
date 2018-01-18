@@ -24,3 +24,5 @@ we also needs to write at least four tests for this function - Your tests should
 
 #test 7
   checks to see if there are duplicates and if so, only return the 2 highest in the group.
+
+  fixing some stuff
