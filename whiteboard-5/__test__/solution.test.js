@@ -5,17 +5,17 @@ const doThing = require('../lib/solution.js');
 describe('#solution module', function() {
   let sll =
   {value: 7,
-    next:{ value: 3,
+    next:{ value: 5,
       next:{ value: 3,
         next: null},
     },
   };
   let answer =
-  { value: 3,
+  { value: 5,
     next: {value: 3,
       next: null},
   };
-  let tooBig =
+  let even =
   {value: 7,
     next:{ value: 3,
       next:{ value: 3,
@@ -24,7 +24,7 @@ describe('#solution module', function() {
       },
     },
   };
-  let tooBigAns = {value: 3,
+  let evenAns = {value: 3,
     next:{ value: 3,
       next:{ value: 3,
         next: null},
@@ -40,6 +40,6 @@ describe('#solution module', function() {
     expect(doThing.findMid(sll)).toEqual(answer);
   });
   it('checks to see if even number is passed in, if so give middle - 1', function() {
-    expect(doThing.findMid(tooBig)).toEqual(tooBigAns);
+    expect(doThing.findMid(even)).toEqual(evenAns);
   });
 });
