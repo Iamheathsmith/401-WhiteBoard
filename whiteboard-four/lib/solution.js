@@ -3,7 +3,6 @@
 const doThing = module.exports = {};
 
 
-
 doThing.findMatch = function(arr1, arr2) {
   if (!arr1 || !arr2 ) return null;
   if (!Array.isArray(arr1) || !Array.isArray(arr2)) return null;
