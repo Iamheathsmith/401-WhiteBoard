@@ -1,0 +1,19 @@
+{
+  "name": "whiteboard-6",
+  "version": "1.0.0",
+  "description": "I need a function that will take in a Single listed list and find the middle node of it and then return that node for me.",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "eslint": "^4.16.0",
+    "jest": "^22.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC"
+}
