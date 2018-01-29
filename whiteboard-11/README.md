@@ -74,6 +74,7 @@ it('checks to see if there is anything to pass into the function', function() {
   });
   ```
 this is checking to make sure the right thing is passed in with the correct amout of them, this case a string or no numbers
+
 ##test 2
 ```javascript
  it('checks to see if the right items are passed in.', function() {
@@ -82,6 +83,8 @@ this is checking to make sure the right thing is passed in with the correct amou
   });
   ```
 this is checking to make sure if we are getting the right answer for differnt numbers.
+
+  
   ##test 3
 ```javascript
  it('checks to see if its the right answer', function() {
@@ -90,7 +93,9 @@ this is checking to make sure if we are getting the right answer for differnt nu
   });
   ```
 this is checking to see if we get the wrong answer.
-  ##test 4
+
+ 
+ ##test 4
 ```javascript
   it('checks to see if its the right answer', function() {
     expect(doThing.findMissingNum (arr)).not.toEqual(arr2);
