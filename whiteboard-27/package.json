@@ -1,0 +1,21 @@
+{
+  "name": "whiteboard-16",
+  "version": "1.0.0",
+  "description": "### problem domain",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "jest": "^22.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.0"
+  },
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint ."
+  },
+  "author": "",
+  "license": "ISC"
+}
