@@ -56,7 +56,9 @@ describe('#solution module', function() {
     expect(doThing.isMatched()).toBe(null);
   });
   it('checks to see if the right thing is passed in, this case a number', function() {
-    expect(doThing.isMatched('string', 3)).toBe(null);
+    expect(doThing.isMatched(binaryTree, 3)).toBe(null);
+  });
+  it('checks to see if the right thing is passed in, this case a string', function() {
     expect(doThing.isMatched('string', binaryTree)).toBe(null);
   });
   it('checks to see if we are getting a true of false ', function() {
