@@ -3,9 +3,6 @@
 const doThing = module.exports = {};
 
 
-let arr2 = [1,2,4,5,7,8,9,10,15,13,12,14];
-
-
 doThing.findMissingNum = function(arr) { //The Big O is O(n)
   if(!arr || !Array.isArray(arr)) return null;
   arr.sort((function(a, b) {return a - b;}));

@@ -13,4 +13,4 @@ test.insert(1,4);
 test.insert(3,4); 
 
 
-console.log(run.sortAndSll(test));
+console.log(run.findMaxChild(test));

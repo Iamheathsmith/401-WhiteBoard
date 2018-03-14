@@ -1,18 +1,19 @@
 
-# whiteBoard 25
+# whiteBoard 24
 
 
 ### problem domain
 
-`Write a function while takes two arguments, a base number and an exponential, and returns the sum of the return value's digits.`
+`Write two functions to print out the nth entry in the fibonacci series, recursively and iteratively`
 
-For example: fn(2, 15) => 32768 => 26
+ex: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34] forms the first ten entries of the fibonacci series
 
+ex: fib(4) === 3
 
 ---
 ### Installing and How to use.
 
-To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-25`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
+To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-24`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
 
 ---
 ### using the CLI 
@@ -24,7 +25,8 @@ node index.js
 you should see this as a result
 
 ```javascript
-your totel sum of the exponential is 26
+your total is 8
+your total is 8
 ```
 
 ---
@@ -34,20 +36,45 @@ when you run this in the termial
 node index.js 
 ```
 ---
-### the function
+### iteratively function
 
 ```javascript
-  mathStuff(arr, arr2) {
-    if(!arr || !arr2 || typeof arr !== 'number' || typeof arr2 !== 'number' || !Number.isInteger(arr) || !Number.isInteger(arr2)) return null;
-    let large = Math.pow(arr, arr2);
-    large = large.toString().split('').reduce((a, b) => a + parseInt(b), 0);
-    return large;
+  fib(arr){
+    if(!arr || typeof arr !== 'number' || !Number.isInteger(arr)) return null;
+    let indexVal = 0, total = 0, temp;
+  
+    while (arr >= 0){
+      temp = indexVal;
+      indexVal = indexVal + total;
+      total = temp;
+      if(total === 0) {
+        indexVal = 1;
+      }
+      arr--;
+    }
+    return total;
   }
 ```
 ---
 ### big O is.......
 
 * big O time is O(n);
+
+---
+### recursively function
+
+```javascript
+  const thing = module.exports = function(arr) {
+  if(!arr || typeof arr !== 'number' || !Number.isInteger(arr)) return null;
+  if (arr <= 2) return 1;
+  
+  return thing(arr - 1) + thing(arr - 2);
+};
+```
+---
+### big O is.......
+
+* big O time is O(2^n);
 
 ---
 ### Testing
@@ -62,27 +89,55 @@ with iteratively, you only have to do one loop, but while you do the recursively
 ---
 ## tests
 
-#### TEST TEST TEST!!!!
+#### iteratively tests
 
 ```javascript
 describe('#solution module', function() {
 
-   it('checks to see if there is anything to pass into the function', function() {
-    expect(doThing.mathStuff()).toBe(null);
+  it('checks to see if there is anything to pass into the function', function() {
+    expect(doThing.fib()).toBe(null);
   });
   it('checks to see if the right thing is passed in, this case a number', function() {
-    expect(doThing.mathStuff('string', 3)).toBe(null);
-    expect(doThing.mathStuff([], 3)).toBe(null);
+    expect(doThing.fib('string')).toBe(null);
+    expect(doThing.fib([])).toBe(null);
   });
   it('checks to see if the number is a whole number', function() {
-    expect(doThing.mathStuff(4.5, 5)).toBe(null);
+    expect(doThing.fib(4.5)).toBe(null);
   });
   it('checks to see if we are returning the right number', function() {
-    expect(doThing.mathStuff(2, 15)).toEqual(26);
-    expect(doThing.mathStuff(2, 2)).toEqual(4);
+    expect(doThing.fib(4)).toEqual(3);
+    expect(doThing.fib(1)).toEqual(1);
+    expect(doThing.fib(10)).toEqual(55);
   });
   it('checks to see if we are doing things right.', function() {
-    expect(doThing.mathStuff(2, 2)).not.toEqual(6);
+    expect(doThing.fib(3)).not.toEqual(6);
+  });
+});
+```
+
+
+#### recursively tests
+
+```javascript
+describe('#solution module', function() {
+
+  it('checks to see if there is anything to pass into the function', function() {
+    expect(doThing()).toBe(null);
+  });
+  it('checks to see if the right thing is passed in, this case a number', function() {
+    expect(doThing('string')).toBe(null);
+    expect(doThing([])).toBe(null);
+  });
+  it('checks to see if the number is a whole number', function() {
+    expect(doThing(4.5)).toBe(null);
+  });
+  it('checks to see if we are returning the right number', function() {
+    expect(doThing(4)).toEqual(3);
+    expect(doThing(1)).toEqual(1);
+    expect(doThing(10)).toEqual(55);
+  });
+  it('checks to see if we are doing things right.', function() {
+    expect(doThing(3)).not.toEqual(6);
   });
 });
 ```

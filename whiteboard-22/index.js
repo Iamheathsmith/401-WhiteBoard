@@ -2,6 +2,6 @@
 
 const run = require('./lib/solution');
 
-let test = ['acre', 'race', 'care', 'act', 'cat', 'tac'];
+let test = 'this is how we do things bam';
 
-console.log(run.doThing(test));
+console.log(run.high(test));

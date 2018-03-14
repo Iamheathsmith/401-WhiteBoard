@@ -1,28 +1,24 @@
 'use strict';
 
-const doThing = require('../lib/solution');
+const testThing = require('../lib/solution.js');
 require('jest');
 
-describe('#solution module', function() {
-  let test = [1,2,4,5,6];
-  let test2 = [7,8,4,9,4,0,11];
-  let test3 = [7,8,9,20];
-  let answer = ['4']
+let test = ['acre', 'race', 'care', 'act', 'cat', 'tac'];
+let answer = ['acre', 'race', 'care', 'act', 'cat', 'tac'];
+let wrong = [ [ 'acre', 'race', 'care' ], [ 'act', 'cat', 'tac' ] ];
 
+describe('#solution for HASH', function() {
   it('checks to see if there is anything to pass into the function', function() {
-    expect(doThing.findMatch()).toBe(null);
+    expect(testThing.doThing()).toBe(null);
   });
-  it('checks to see if only one array is passed into the function', function() {
-    expect(doThing.findMatch(test)).toBe(null);
+  it('checks to see if the right items are passed in.', function() {
+    expect(testThing.doThing(1)).toBe(null);
+    expect(testThing.doThing('test')).toBe(null);
   });
-  it('checks to see if both items passed in are arrays', function() {
-    expect(doThing.findMatch(test, 4)).toBe(null);
-    expect(doThing.findMatch('string', test)).toBe(null);
+  it('checks to see if its the right answer is given', function() {
+    expect(testThing.doThing(test)).toEqual(answer);
   });
-  it('checks to see if we are returning only matching', function() {
-    expect(doThing.findMatch(test, test2)).toEqual(answer);
-  });
-  it('checks to see if we are returning only matching', function() {
-    expect(doThing.findMatch(test, test3)).toEqual('no matching pairs');
+  it('checks to see if its does not return the same data passed in.', function() {
+    expect(testThing.doThing(test)).not.toEqual(wrong);
   });
 });

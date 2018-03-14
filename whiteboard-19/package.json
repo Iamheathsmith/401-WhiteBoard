@@ -10,7 +10,7 @@
     "jest": "^22.1.4"
   },
   "devDependencies": {
-    "eslint": "^4.18.0"
+    "eslint": "^4.17.0"
   },
   "scripts": {
     "test": "jest",

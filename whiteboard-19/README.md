@@ -1,48 +1,41 @@
 
-# whiteBoard 19
+# whiteBoard 18
 
 ### problem domain
 
-`Create a utils.js module which exports the following methods: map(), filter(), and reduce(). You will implement these methods from scratch, not utilizing the built-in array methods.`
+`take a K-ary and flaten it and return a SLL. Bonus--- sort that SLL from low to high.`
 
 ### Installing and How to use.
 
-To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-19`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
+To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-18`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
 
 
 ### using the CLI 
 
 To use the code, run `node` in your terminal and the `index.js` file, it should look like this
 ```javascript
-node index.js map
+node index.js 
 ```
-you should see the original array just doubled.
+
+this will sent off the function with a preset SLL that are in the index.js page. you should get this back. in your termial.
 
 ```javascript
-[ 2, 6, 10, 14, 18 ]
+SLL {
+  head: Node { value: 1, next: Node { value: 2, next: [Node] } },
+  size: 7 }
 ```
-
-To use the code, run `node` in your terminal and the `index.js` file, it should look like this
-```javascript
-node index.js filter
-```
-you should see just the numbers in the orginal array higher or equal to 5.
+we have this dummy test set of data that looks like this(below) and you can see that we have 9 items in a SLL, the total of all the nodes value is 30.
 
 ```javascript
-[ 5, 7, 9 ]
+let test = new Tree();
+test.insert(5);
+test.insert(15,5);
+test.insert(4,5);
+test.insert(2,4); 
+test.insert(3,15); 
+test.insert(1,4); 
+test.insert(3,4); 
 ```
-
-To use the code, run `node` in your terminal and the `index.js` file, it should look like this
-```javascript
-node index.js reduce
-```
-it should double the array values and then add them all together.
-
-```javascript
-50
-```
-
-
 
 ### what is happening.
 when you run this in the termial
@@ -53,35 +46,23 @@ node index.js
 you are running this function 
 
 ```javascript
-  map(arr, cb) {
-    if(!arr || !Array.isArray(arr) || typeof arr === 'string' || !cb) return null;
-    const result = [];
-    for (let i = 0; i < arr.length; i++) {      
-      result.push(cb(arr[i]));
+doThing.sortAndSll = function(root) {
+  if(!root || typeof root === 'string' || typeof root === 'number' ) return null;
+  let testArray = [];
+  let sll = new SLL();
+  
+  root.breadthFirst(current => {
+    if(current.val) {
+      testArray.push(current.val.val);
     }
-    return result;
-  }
+  });
+  testArray.sort(function(a, b) {return a - b;});
 
-  filter(arr, cb) {
-    if(!arr || !Array.isArray(arr) || typeof arr === 'string' || !cb) return null;
-    const result = [];
-    for (let i = 0; i < arr.length; i++) {
-      if (cb(arr[i])) {
-        result.push(arr[i]);
-      }
-    }
-    return result;
+  for(let i in testArray) {
+    sll.insertEnd(testArray[i]);
   }
-
-  reduce(arr, cb, initVal) {
-    if(!arr || !Array.isArray(arr) || typeof arr === 'string') return null;
-    let result = initVal;
-    let newArr = new Array(...arr);
-    for (let i = 0; i < newArr.length; i++) {
-      result += cb(newArr[i]);
-    }
-    return result;
-  }
+  return sll ;
+};
 ```
 
 ### big O is.......
@@ -92,61 +73,33 @@ big O time is O(n);
 To run the tests for this function, type `nmp run test` in your terminal,
 we do have some test SLL objects hardcoded inside of the `solution.test.js` file that we use for testing.
 
-##test for MAP
+##test 1
+this is chcking to see if anything is passed into the arguments
 ```javascript
-describe('#solution module for MAP', function() {
-  it('checks to see if there is anything to pass into the function', function() {
-    expect(doThing.map()).toBe(null);
+it('checks to see if there is anything to pass into the function', function() {
+    expect(doThing.sortAndSll()).toBe(null);
   });
-  it('checks to see if the right items are passed in.', function() {
-    expect(doThing.map(1, cb)).toBe(null);
-    expect(doThing.map('bam', cb)).toBe(null);
-    expect(doThing.map(test)).toBe(null);
-  });
-  it('checks to see if its the right answer is given', function() {
-    expect(doThing.map(test, cb)).toEqual(answer);
-  });
-  it('checks to see if its does not return the same data passed in.', function() {
-    expect(doThing.map(test, cb)).not.toEqual(test);
-  });
-});
-```
-
-##test for FILTER
+  ```
+this is checking to make sure the right thing, in this case its a string or a number.
+##test 2
 ```javascript
-describe('#solution module for FILTER', function() {
-  it('checks to see if there is anything to pass into the function', function() {
-    expect(doThing.filter()).toBe(null);
+ it('checks to see if the right items are passed in.', function() {
+    expect(doThing.sortAndSll(1)).toBe(null);
+    expect(doThing.sortAndSll('test')).toBe(null);
   });
-  it('checks to see if the right items are passed in.', function() {
-    expect(doThing.filter(1, cbFil)).toBe(null);
-    expect(doThing.filter('bam', cbFil)).toBe(null);
-    expect(doThing.filter(test)).toBe(null);
-  });
-  it('checks to see if its the right answer is given', function() {
-    expect(doThing.filter(test, cbFil)).toEqual([5, 7, 9]);
-  });
-  it('checks to see if its does not return the same data passed in.', function() {
-    expect(doThing.filter(test, cbFil)).not.toEqual(test);
-  });
-});
-```
-
-##test for REDUCE
+  ```
+this is checking to make sure if we are getting the right answer
+  ##test 3
 ```javascript
-describe('#solution module for REDUCE', function() {
-  it('checks to see if there is anything to pass into the function', function() {
-    expect(doThing.reduce()).toBe(null);
-  });
-  it('checks to see if the right items are passed in.', function() {
-    expect(doThing.reduce(1, cb)).toBe(null);
-    expect(doThing.reduce('bam', cb)).toBe(null);
-  });
   it('checks to see if its the right answer is given', function() {
-    expect(doThing.reduce(test, cb, 0)).toEqual(50);
+    expect(doThing.sortAndSll(test).head.value).toEqual(1);
+    expect(doThing.sortAndSll(test).head.next.next.next.next.next.next.value).toEqual(15);
   });
+  ```
+this is checking to see if we pass a TREE that we dont get just the root starting point.
+  ##test 4
+```javascript
   it('checks to see if its does not return the same data passed in.', function() {
-    expect(doThing.reduce(test, cb)).not.toEqual(test);
+    expect(doThing.sortAndSll(test).head.value).not.toEqual(5);
   });
-});
-```
+  ```

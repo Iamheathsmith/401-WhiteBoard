@@ -1,21 +1,18 @@
 
-# whiteBoard 26
+# whiteBoard 25
 
 
 ### problem domain
 
-`Write a function which takes two binary search trees as arguments, and compares them for structural likeness.`
+`Write a function while takes two arguments, a base number and an exponential, and returns the sum of the return value's digits.`
 
-`If they are structurally identical, return true`
-`Else return false`
-
-
+For example: fn(2, 15) => 32768 => 26
 
 
 ---
 ### Installing and How to use.
 
-To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-26`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
+To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-25`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
 
 ---
 ### using the CLI 
@@ -24,13 +21,10 @@ To use the code, run `node` in your terminal and the `index.js` file, it should 
 ```javascript
 node index.js 
 ```
-you should see this as a result if it matches
+you should see this as a result
 
 ```javascript
-true 
-```
-```javascript
-false
+your totel sum of the exponential is 26
 ```
 
 ---
@@ -43,16 +37,11 @@ node index.js
 ### the function
 
 ```javascript
-isMatched(arr, arr2) {
-    if(!arr || !arr || typeof arr === 'string' || typeof arr2 === 'string') return null;
-    arr.inOrderTraversal();
-    arr2.inOrderTraversal();
-    
-    if (arr.match.toString() !== arr2.match.toString()) {
-      return false;
-    } else {
-      return true;
-    }
+  mathStuff(arr, arr2) {
+    if(!arr || !arr2 || typeof arr !== 'number' || typeof arr2 !== 'number' || !Number.isInteger(arr) || !Number.isInteger(arr2)) return null;
+    let large = Math.pow(arr, arr2);
+    large = large.toString().split('').reduce((a, b) => a + parseInt(b), 0);
+    return large;
   }
 ```
 ---
@@ -77,17 +66,25 @@ with iteratively, you only have to do one loop, but while you do the recursively
 
 ```javascript
 describe('#solution module', function() {
- it('checks to see if there is anything to pass into the function', function() {
-    expect(doThing.isMatched()).toBe(null);
+
+   it('checks to see if there is anything to pass into the function', function() {
+    expect(doThing.mathStuff()).toBe(null);
   });
   it('checks to see if the right thing is passed in, this case a number', function() {
-    expect(doThing.isMatched('string', 3)).toBe(null);
-    expect(doThing.isMatched('string', binaryTree)).toBe(null);
+    expect(doThing.mathStuff('string', 3)).toBe(null);
+    expect(doThing.mathStuff([], 3)).toBe(null);
   });
-  it('checks to see if we are getting a true of false ', function() {
-    expect(doThing.isMatched(binaryTree, mockTree)).toBe(true);
-    expect(doThing.isMatched(binaryTree, mockTree2)).toBe(false);
+  it('checks to see if the number is a whole number', function() {
+    expect(doThing.mathStuff(4.5, 5)).toBe(null);
   });
+  it('checks to see if we are returning the right number', function() {
+    expect(doThing.mathStuff(2, 15)).toEqual(26);
+    expect(doThing.mathStuff(2, 2)).toEqual(4);
+  });
+  it('checks to see if we are doing things right.', function() {
+    expect(doThing.mathStuff(2, 2)).not.toEqual(6);
+  });
+});
 ```
 
 

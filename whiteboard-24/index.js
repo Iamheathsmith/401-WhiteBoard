@@ -1,10 +1,8 @@
 'use strict';
 
 const run = require('./lib/solution');
-const yaDo = require('./lib/solution2');
 
-// [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+let test = [1,2,4,5,6];
+let test2 = [7,8,4,9,4,0,11];
 
-console.log('your total is', run.fib(6));
-console.log('your total is', yaDo(6));
-
+console.log(run.findMatch(test, test2));

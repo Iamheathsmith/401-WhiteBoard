@@ -1,32 +1,26 @@
 'use strict';
 
-const Hash = require('./hashtable')
+const Hash = require('./hashtable');
+let hashTable = new Hash();
+
 
 module.exports = new class {
-  findMatch(arr1, arr2) {
-    if (!arr1 || !arr2 ) return null;
-    if (!Array.isArray(arr1) || !Array.isArray(arr2)) return null;
-    let test = [];
-    let test2 = [];
-    let hash = new Hash(5)
-    for (let i = 0; i < arr1.length; i++) {
-      let index = hash.hashKey(arr1[i]);
-      test.push(index);
-      }
-    for (let i = 0; i < arr2.length; i++) {
-      let index2 = hash.hashKey(arr2[i]);
-      test2.push(index2);
-    }
+  doThing(arg) {
+    if (!arg || !Array.isArray(arg)) return null;
+    let table = {};
+    let final = [];
+
+    arg.map(val => {
+      let hash = hashTable.hashKey(val);
+      table[hash] ? table[hash].push(val) : table[hash] = [val];
+    });  
     
-    let temp = test.filter((n) => test2.includes(n));
-    let final = temp.filter((val, i, final) => {
-      if (final.indexOf(val) === i) {
-        return val
+    for (let i in table) {
+      if (table[i]) {
+        final.push(table[i]);
       }
-    })
-    if (final.length < 1 ) return 'no matching pairs';
+    }
+    return final.reduce((a, b) => a.concat(b));
+  }
+};
 
-    return final;
-
-  };
-}

@@ -9,12 +9,9 @@
   "dependencies": {
     "jest": "^22.1.4"
   },
-  "devDependencies": {
-    "eslint": "^4.17.0"
-  },
+  "devDependencies": {},
   "scripts": {
-    "test": "jest",
-    "lint": "eslint ."
+    "test": "jest"
   },
   "author": "",
   "license": "ISC"

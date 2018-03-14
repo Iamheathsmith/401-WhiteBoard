@@ -2,17 +2,17 @@
 
 const doThing = module.exports = {};
 
-doThing.findMaxChild = function(root) {
-  if(!root || typeof root === 'string' || typeof root === 'number' ) return null;
-  let maxChild = root.root;
-  
-  root.breadthFirst(current => {
 
-    if(current.val.children.length > maxChild.children.length) {
-      maxChild = current.val;
+doThing.findVal = function(root) {
+  if (!root || typeof root === 'number' || typeof root === 'string') return null;
+  let total = 0;
+  root.breadthFirst(current => {
+    if(current.val.val) {
+      total += current.val.val;
     }
   });
-  return maxChild ;
+  return total;
 };
+
 
 

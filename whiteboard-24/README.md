@@ -1,21 +1,23 @@
 
-# whiteBoard 24
-
+# whiteBoard 23
 
 ### problem domain
 
-`Write two functions to print out the nth entry in the fibonacci series, recursively and iteratively`
+`Given two arrays, write a function to compute their intersection`
 
-ex: [0, 1, 1, 2, 3, 5, 8, 13, 21, 34] forms the first ten entries of the fibonacci series
+example: Given nums1 = [1, 2, 2, 1], nums2 = [2, 2], return [2].
 
-ex: fib(4) === 3
+below is our test string
+```javascript
+let test = [1,2,4,5,6];
+let test2 = [7,8,4,9,4,0,11];
+```
 
----
 ### Installing and How to use.
 
-To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-24`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
+To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-23`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
 
----
+
 ### using the CLI 
 
 To use the code, run `node` in your terminal and the `index.js` file, it should look like this
@@ -25,121 +27,93 @@ node index.js
 you should see this as a result
 
 ```javascript
-your total is 8
-your total is 8
+[ '4' ]
 ```
 
----
+
 ### what is happening.
 when you run this in the termial
 ```javascript
 node index.js 
 ```
----
-### iteratively function
+
+you are running this function 
 
 ```javascript
-  fib(arr){
-    if(!arr || typeof arr !== 'number' || !Number.isInteger(arr)) return null;
-    let indexVal = 0, total = 0, temp;
-  
-    while (arr >= 0){
-      temp = indexVal;
-      indexVal = indexVal + total;
-      total = temp;
-      if(total === 0) {
-        indexVal = 1;
+  findMatch(arr1, arr2) {
+    if (!arr1 || !arr2 ) return null;
+    if (!Array.isArray(arr1) || !Array.isArray(arr2)) return null;
+    let test = [];
+    let test2 = [];
+    let hash = new Hash(5)
+    for (let i = 0; i < arr1.length; i++) {
+      let index = hash.hashKey(arr1[i]);
+      test.push(index);
       }
-      arr--;
+    for (let i = 0; i < arr2.length; i++) {
+      let index2 = hash.hashKey(arr2[i]);
+      test2.push(index2);
     }
-    return total;
-  }
+    
+    let temp = test.filter((n) => test2.includes(n));
+    let final = temp.filter((val, i, final) => {
+      if (final.indexOf(val) === i) {
+        return val
+      }
+    })
+    if (final.length < 1 ) return 'no matching pairs';
+
+    return final;
+  };
 ```
----
+
 ### big O is.......
+big O time is O(n);
 
-* big O time is O(n);
-
----
-### recursively function
-
-```javascript
-  const thing = module.exports = function(arr) {
-  if(!arr || typeof arr !== 'number' || !Number.isInteger(arr)) return null;
-  if (arr <= 2) return 1;
-  
-  return thing(arr - 1) + thing(arr - 2);
-};
-```
----
-### big O is.......
-
-* big O time is O(2^n);
-
----
 ### Testing
 
 To run the tests for this function, type `nmp run test` in your terminal,
 we do have some test SLL objects hardcoded inside of the `solution.test.js` file that we use for testing.
 
----
-### why iteratively is better then recursively 
-with iteratively, you only have to do one loop, but while you do the recursively, its doing the loop twice as much. so you bigO time goes to crap.
+##tests
 
----
-## tests
-
-#### iteratively tests
+check to see if somethingis passed in
 
 ```javascript
-describe('#solution module', function() {
-
-  it('checks to see if there is anything to pass into the function', function() {
-    expect(doThing.fib()).toBe(null);
+it('checks to see if there is anything to pass into the function', function() {
+    expect(doThing.findMatch()).toBe(null);
   });
-  it('checks to see if the right thing is passed in, this case a number', function() {
-    expect(doThing.fib('string')).toBe(null);
-    expect(doThing.fib([])).toBe(null);
-  });
-  it('checks to see if the number is a whole number', function() {
-    expect(doThing.fib(4.5)).toBe(null);
-  });
-  it('checks to see if we are returning the right number', function() {
-    expect(doThing.fib(4)).toEqual(3);
-    expect(doThing.fib(1)).toEqual(1);
-    expect(doThing.fib(10)).toEqual(55);
-  });
-  it('checks to see if we are doing things right.', function() {
-    expect(doThing.fib(3)).not.toEqual(6);
-  });
-});
 ```
 
-
-#### recursively tests
+check to see if the right thing is passed in.
 
 ```javascript
-describe('#solution module', function() {
-
-  it('checks to see if there is anything to pass into the function', function() {
-    expect(doThing()).toBe(null);
+it('checks to see if only one array is passed into the function', function() {
+    expect(doThing.findMatch(test)).toBe(null);
   });
-  it('checks to see if the right thing is passed in, this case a number', function() {
-    expect(doThing('string')).toBe(null);
-    expect(doThing([])).toBe(null);
-  });
-  it('checks to see if the number is a whole number', function() {
-    expect(doThing(4.5)).toBe(null);
-  });
-  it('checks to see if we are returning the right number', function() {
-    expect(doThing(4)).toEqual(3);
-    expect(doThing(1)).toEqual(1);
-    expect(doThing(10)).toEqual(55);
-  });
-  it('checks to see if we are doing things right.', function() {
-    expect(doThing(3)).not.toEqual(6);
-  });
-});
 ```
 
+checks to see if the right type of data was given
+```javascript
+it('checks to see if both items passed in are arrays', function() {
+    expect(doThing.findMatch(test, 4)).toBe(null);
+    expect(doThing.findMatch('string', test)).toBe(null);
+  });
+```
+
+checks to see if the right answer is given
+
+```javascript
+  it('checks to see if we are returning only matching', function() {
+    expect(doThing.findMatch(test, test2)).toEqual(answer);
+  });
+```
+
+checks to see if no matching pairs was possible. 
+
+```javascript
+ it('checks to see if we are returning only matching', function() {
+    expect(doThing.findMatch(test, test3)).toEqual('no matching pairs');
+  });
+```
 

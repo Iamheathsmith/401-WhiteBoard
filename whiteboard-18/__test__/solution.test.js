@@ -16,17 +16,16 @@ test.insert(3,4);
 
 describe('#solution module', function() {
   it('checks to see if there is anything to pass into the function', function() {
-    expect(doThing.sortAndSll()).toBe(null);
+    expect(doThing.findMaxChild()).toBe(null);
   });
   it('checks to see if the right items are passed in.', function() {
-    expect(doThing.sortAndSll(1)).toBe(null);
-    expect(doThing.sortAndSll('test')).toBe(null);
+    expect(doThing.findMaxChild(1)).toBe(null);
+    expect(doThing.findMaxChild('test')).toBe(null);
   });
   it('checks to see if its the right answer is given', function() {
-    expect(doThing.sortAndSll(test).head.value).toEqual(1);
-    expect(doThing.sortAndSll(test).head.next.next.next.next.next.next.value).toEqual(15);
+    expect(doThing.findMaxChild(test)).toEqual(test.root.children[1]);
   });
   it('checks to see if its does not return the same data passed in.', function() {
-    expect(doThing.sortAndSll(test).head.value).not.toEqual(5);
+    expect(doThing.findMaxChild(test)).not.toEqual(test.root.val);
   });
 });
