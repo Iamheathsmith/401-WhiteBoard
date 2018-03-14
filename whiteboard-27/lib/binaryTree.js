@@ -4,7 +4,7 @@
 class BinaryTree{
   constructor(root=null) {
     this.root = root;
-    this.inOrd = [];
+    this.match = [];
 
   }
 
@@ -15,9 +15,12 @@ class BinaryTree{
 
   _inOrderTraversal(root) {
     if(root === null) return null;
+
+    root.left !== null ? this.match.push(true) : this.match.push(false);
     this._inOrderTraversal(root.left);
-    this.inOrd.push(root.value);
+
     this. _inOrderTraversal(root.right);
+    root.right !== null ? this.match.push(true) : this.match.push(false);
   }
 
 }

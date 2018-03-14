@@ -5,7 +5,7 @@ const Queue = require('./queueBuilder');
 const TreeNode = class {
   constructor(val) {
     this.val = val;
-    this.children = []; // Scott haxored this! Feel free to stretch with the SLL! ;-)
+    this.children = []; 
   }
 };
 
@@ -49,15 +49,6 @@ const K_ary = module.exports = class {
 
     return this;
   }
-
-  // childLess(root) {
-  //   let noChildren = [];
-  //   root.breadthFirst(current => {
-  //     if(!current.children) {
-  //       noChildren.push(current);
-  //     }
-  //   });
-  // }
 
   // Removals
   removeByVal(val) {

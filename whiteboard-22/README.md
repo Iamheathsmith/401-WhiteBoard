@@ -1,18 +1,18 @@
 
-# whiteBoard 22
+# whiteBoard 20
 
 ### problem domain
 
-`white a method to sort an array of strings so that all the anagrams are next to each other.. note - we can use a hash table to map the sorted version of a word to a list of its anagrams`
+`given a string of words, find the highest srocing word given A = 1, B = 2, C = 3 and so on.`
 
 below is our test string
 ```javascript
-let test = ['acre', 'race', 'care', 'act', 'cat', 'tac'];
+'this is how we do things bam'
 ```
 
 ### Installing and How to use.
 
-To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-22`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
+To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-21`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
 
 
 ### using the CLI 
@@ -24,7 +24,7 @@ node index.js
 you should see this as a result
 
 ```javascript
-['acre', 'race', 'care', 'act', 'cat', 'tac'];
+{ maxValue: 'things', wordVal: 77 }
 ```
 
 
@@ -37,27 +37,28 @@ node index.js
 you are running this function 
 
 ```javascript
-   doThing(arg) {
-    if (!arg || !Array.isArray(arg)) return null;
-    let table = {};
-    let final = [];
-
-    arg.map(val => {
-      let hash = hashTable.hashKey(val);
-      table[hash] ? table[hash].push(val) : table[hash] = [val];
-    });  
-    
-    for (let i in table) {
-      if (table[i]) {
-        final.push(table[i]);
+  high(x) {
+    if(!x || typeof x !== 'string') return null;
+    var words = x.split(' '),
+      wordVal = 0,
+      maxValue = '';
+    for(let i = 0; i < words.length; i++){
+      var singleWord = words[i],
+        valOfWord = 0;
+      for(let p = 0; p < singleWord.length; p++){
+        valOfWord += (singleWord.charCodeAt(p) - 96);
+      }
+      if(valOfWord > wordVal){
+        wordVal = valOfWord;
+        maxValue = singleWord;
       }
     }
-    return final.reduce((a, b) => a.concat(b));
+    return {maxValue, wordVal};
   }
 ```
 
 ### big O is.......
-big O time is O(n);
+big O time is O(n^2);
 
 ### Testing
 
@@ -69,17 +70,17 @@ we do have some test SLL objects hardcoded inside of the `solution.test.js` file
 check to see if somethingis passed in
 
 ```javascript
-it('checks to see if there is anything to pass into the function', function() {
-    expect(testThing.doThing()).toBe(null);
+ it('checks to see if there is anything to pass into the function', function() {
+    expect(doThing.high()).toBe(null);
   });
 ```
 
 check to see if the right thing is passed in.
 
 ```javascript
- it('checks to see if the right items are passed in.', function() {
-    expect(testThing.doThing(1)).toBe(null);
-    expect(testThing.doThing('test')).toBe(null);
+it('checks to see if the right items are passed in.', function() {
+    expect(doThing.high(1)).toBe(null);
+    expect(doThing.high([1, 3])).toBe(null);
   });
 ```
 
@@ -87,7 +88,7 @@ checks to see if the right answer is given
 
 ```javascript
 it('checks to see if its the right answer is given', function() {
-    expect(testThing.doThing(test)).toEqual(answer);
+    expect(doThing.high(test)).toEqual(answer);
   });
 ```
 
@@ -95,7 +96,7 @@ checks to see if the orignal is not given back.
 
 ```javascript
  it('checks to see if its does not return the same data passed in.', function() {
-    expect(testThing.doThing(test)).not.toEqual(wrong);
+    expect(doThing.high(test)).not.toEqual(test);
   });
 ```
 

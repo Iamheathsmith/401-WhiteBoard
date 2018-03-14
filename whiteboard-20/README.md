@@ -1,47 +1,48 @@
 
-# whiteBoard 20
+# whiteBoard 19
 
 ### problem domain
 
-`Given a 2-dimensional array of numbers, rotate the array 90 degrees.`
-
-```javascript
-[
-  [1, 2, 3],
-  [4, 5, 6],
-  [7, 8, 9],
-]
-
-// rotated 90 degrees
-[
-  [7, 4, 1],
-  [8, 5, 2],
-  [9, 6, 3],
-]
-```
+`Create a utils.js module which exports the following methods: map(), filter(), and reduce(). You will implement these methods from scratch, not utilizing the built-in array methods.`
 
 ### Installing and How to use.
 
-To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-20`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
+To install this program, place fork and 'git clone' this repo to your computer. From the terminal, navigate to  `whiteBoard-19`. once there, install NPM but typing in , `nmp i`. after that you need to install JEST and eslint which is done with `npm i -D `. 
 
 
 ### using the CLI 
 
 To use the code, run `node` in your terminal and the `index.js` file, it should look like this
 ```javascript
-node index.js 
+node index.js map
 ```
-you should see this as a result
+you should see the original array just doubled.
 
 ```javascript
-[ [ 7, 4, 1 ], [ 8, 5, 2 ], [ 9, 6, 3 ] ]
+[ 2, 6, 10, 14, 18 ]
 ```
 
-this is cause its taking the orginal array and rotating it 90 degrees.
+To use the code, run `node` in your terminal and the `index.js` file, it should look like this
+```javascript
+node index.js filter
+```
+you should see just the numbers in the orginal array higher or equal to 5.
 
 ```javascript
-[ [ 1, 2, 3 ], [ 4, 5, 6 ], [ 7, 8, 9 ] ]
+[ 5, 7, 9 ]
 ```
+
+To use the code, run `node` in your terminal and the `index.js` file, it should look like this
+```javascript
+node index.js reduce
+```
+it should double the array values and then add them all together.
+
+```javascript
+50
+```
+
+
 
 ### what is happening.
 when you run this in the termial
@@ -52,53 +53,100 @@ node index.js
 you are running this function 
 
 ```javascript
- rotate(arr) {
-    if(!arr || !Array.isArray(arr)) return null;
-    arr.reverse();
-    return arr[0].map((val, i) => arr.map(row => row[i]));
+  map(arr, cb) {
+    if(!arr || !Array.isArray(arr) || typeof arr === 'string' || !cb) return null;
+    const result = [];
+    for (let i = 0; i < arr.length; i++) {      
+      result.push(cb(arr[i]));
+    }
+    return result;
+  }
+
+  filter(arr, cb) {
+    if(!arr || !Array.isArray(arr) || typeof arr === 'string' || !cb) return null;
+    const result = [];
+    for (let i = 0; i < arr.length; i++) {
+      if (cb(arr[i])) {
+        result.push(arr[i]);
+      }
+    }
+    return result;
+  }
+
+  reduce(arr, cb, initVal) {
+    if(!arr || !Array.isArray(arr) || typeof arr === 'string') return null;
+    let result = initVal;
+    let newArr = new Array(...arr);
+    for (let i = 0; i < newArr.length; i++) {
+      result += cb(newArr[i]);
+    }
+    return result;
   }
 ```
 
 ### big O is.......
-big O time is O(n^2);
+big O time is O(n);
 
 ### Testing
 
 To run the tests for this function, type `nmp run test` in your terminal,
 we do have some test SLL objects hardcoded inside of the `solution.test.js` file that we use for testing.
 
-##tests
-
-check to see if somethingis passed in
-
+##test for MAP
 ```javascript
- it('checks to see if there is anything to pass into the function', function() {
-    expect(doThing.rotate()).toBe(null);
+describe('#solution module for MAP', function() {
+  it('checks to see if there is anything to pass into the function', function() {
+    expect(doThing.map()).toBe(null);
   });
+  it('checks to see if the right items are passed in.', function() {
+    expect(doThing.map(1, cb)).toBe(null);
+    expect(doThing.map('bam', cb)).toBe(null);
+    expect(doThing.map(test)).toBe(null);
+  });
+  it('checks to see if its the right answer is given', function() {
+    expect(doThing.map(test, cb)).toEqual(answer);
+  });
+  it('checks to see if its does not return the same data passed in.', function() {
+    expect(doThing.map(test, cb)).not.toEqual(test);
+  });
+});
 ```
 
-check to see if the right thing is passed in. this case an array.
-
+##test for FILTER
 ```javascript
-it('checks to see if the right items are passed in.', function() {
-    expect(doThing.rotate(1)).toBe(null);
-    expect(doThing.rotate('bam')).toBe(null);
+describe('#solution module for FILTER', function() {
+  it('checks to see if there is anything to pass into the function', function() {
+    expect(doThing.filter()).toBe(null);
   });
+  it('checks to see if the right items are passed in.', function() {
+    expect(doThing.filter(1, cbFil)).toBe(null);
+    expect(doThing.filter('bam', cbFil)).toBe(null);
+    expect(doThing.filter(test)).toBe(null);
+  });
+  it('checks to see if its the right answer is given', function() {
+    expect(doThing.filter(test, cbFil)).toEqual([5, 7, 9]);
+  });
+  it('checks to see if its does not return the same data passed in.', function() {
+    expect(doThing.filter(test, cbFil)).not.toEqual(test);
+  });
+});
 ```
 
-checks to see if the right answer is given
-
+##test for REDUCE
 ```javascript
-it('checks to see if its the right answer is given', function() {
-    expect(doThing.rotate(test)).toEqual(answer);
+describe('#solution module for REDUCE', function() {
+  it('checks to see if there is anything to pass into the function', function() {
+    expect(doThing.reduce()).toBe(null);
   });
-```
-
-checks to see if the orignal is not given back. 
-
-```javascript
- it('checks to see if its does not return the same data passed in.', function() {
-    expect(doThing.rotate(test)).not.toEqual(test);
+  it('checks to see if the right items are passed in.', function() {
+    expect(doThing.reduce(1, cb)).toBe(null);
+    expect(doThing.reduce('bam', cb)).toBe(null);
   });
+  it('checks to see if its the right answer is given', function() {
+    expect(doThing.reduce(test, cb, 0)).toEqual(50);
+  });
+  it('checks to see if its does not return the same data passed in.', function() {
+    expect(doThing.reduce(test, cb)).not.toEqual(test);
+  });
+});
 ```
-

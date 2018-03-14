@@ -1,27 +1,18 @@
 'use strict';
 
 const doThing = module.exports = {};
-const SLL = require('./sll');
 
-
-
-doThing.sortAndSll = function(root) {
+doThing.findMaxChild = function(root) {
   if(!root || typeof root === 'string' || typeof root === 'number' ) return null;
-  let testArray = [];
-  let sll = new SLL();
+  let maxChild = root.root;
   
   root.breadthFirst(current => {
-    if(current.val) {
-      testArray.push(current.val.val);
+
+    if(current.val.children.length > maxChild.children.length) {
+      maxChild = current.val;
     }
   });
-  testArray.sort(function(a, b) {return a - b;});
-
-  for(let i in testArray) {
-    sll.insertEnd(testArray[i]);
-  }
-  return sll ;
+  return maxChild ;
 };
-
 
 

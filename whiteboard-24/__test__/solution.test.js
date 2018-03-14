@@ -4,23 +4,25 @@ const doThing = require('../lib/solution');
 require('jest');
 
 describe('#solution module', function() {
+  let test = [1,2,4,5,6];
+  let test2 = [7,8,4,9,4,0,11];
+  let test3 = [7,8,9,20];
+  let answer = ['4']
 
   it('checks to see if there is anything to pass into the function', function() {
-    expect(doThing.fib()).toBe(null);
+    expect(doThing.findMatch()).toBe(null);
   });
-  it('checks to see if the right thing is passed in, this case a number', function() {
-    expect(doThing.fib('string')).toBe(null);
-    expect(doThing.fib([])).toBe(null);
+  it('checks to see if only one array is passed into the function', function() {
+    expect(doThing.findMatch(test)).toBe(null);
   });
-  it('checks to see if the number is a whole number', function() {
-    expect(doThing.fib(4.5)).toBe(null);
+  it('checks to see if both items passed in are arrays', function() {
+    expect(doThing.findMatch(test, 4)).toBe(null);
+    expect(doThing.findMatch('string', test)).toBe(null);
   });
-  it('checks to see if we are returning the right number', function() {
-    expect(doThing.fib(4)).toEqual(3);
-    expect(doThing.fib(1)).toEqual(1);
-    expect(doThing.fib(10)).toEqual(55);
+  it('checks to see if we are returning only matching', function() {
+    expect(doThing.findMatch(test, test2)).toEqual(answer);
   });
-  it('checks to see if we are doing things right.', function() {
-    expect(doThing.fib(3)).not.toEqual(6);
+  it('checks to see if we are returning only matching', function() {
+    expect(doThing.findMatch(test, test3)).toEqual('no matching pairs');
   });
 });

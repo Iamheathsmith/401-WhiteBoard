@@ -1,26 +1,24 @@
 'use strict';
 
-const Hash = require('./hashtable');
-let hashTable = new Hash();
-
 
 module.exports = new class {
-  doThing(arg) {
-    if (!arg || !Array.isArray(arg)) return null;
-    let table = {};
-    let final = [];
-
-    arg.map(val => {
-      let hash = hashTable.hashKey(val);
-      table[hash] ? table[hash].push(val) : table[hash] = [val];
-    });  
-    
-    for (let i in table) {
-      if (table[i]) {
-        final.push(table[i]);
+  high(x) {
+    if(!x || typeof x !== 'string') return null;
+    var words = x.split(' '),
+      wordVal = 0,
+      maxValue = '';
+    for(let i = 0; i < words.length; i++){
+      var singleWord = words[i],
+        valOfWord = 0;
+      for(let p = 0; p < singleWord.length; p++){
+        valOfWord += (singleWord.charCodeAt(p) - 96);
+      }
+      if(valOfWord > wordVal){
+        wordVal = valOfWord;
+        maxValue = singleWord;
       }
     }
-    return final.reduce((a, b) => a.concat(b));
+    return {maxValue, wordVal};
   }
 };
 

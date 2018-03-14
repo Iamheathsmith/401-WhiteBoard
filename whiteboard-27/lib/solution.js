@@ -1,17 +1,18 @@
 'use strict';
 
-const SLL = require('./SLL/sll');
+
 
 module.exports = new class {
-  treeToSll(arr) {
-    if(!arr || typeof arr === 'string' || typeof arr === 'number') return null;
-    let sll = new SLL();
+  isMatched(arr, arr2) {
+    if(!arr || !arr || typeof arr === 'string' || typeof arr2 === 'string') return null;
     arr.inOrderTraversal();
-    let test = arr.inOrd.sort((a, b) => b - a);
-    while (test.length > 0) {
-      sll.insertHead(test.shift());
+    arr2.inOrderTraversal();
+    
+    if (arr.match.toString() !== arr2.match.toString()) {
+      return false;
+    } else {
+      return true;
     }
-    return sll;
   }
 };
 
